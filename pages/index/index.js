@@ -3,15 +3,14 @@ Page({
     this.webViewContext = my.createWebViewContext('arus-tng');
   },
   arustng(e){
-    // my.getAuthCode({
-    //   scopes: 'BASE_USER_INFO',
-    //   success: (res) => {
-    //     my.alert({
-    //       content: JSON.stringify(res),
-    //     });
-    //     this.webViewContext.postMessage({'authCode': '1'});
-    //   },
-    // }); 
+    if (e && e.detail && e.detail.name && e.detail.name === "TNG"){
+      my.getAuthCode({
+        scopes: 'BASE_USER_INFO',
+        success: (res) => {
+          this.webViewContext.postMessage({'authCode': res.authCode});
+        },
+      }); 
+    }
   },
   onReady() {
     // Page loading is complete
